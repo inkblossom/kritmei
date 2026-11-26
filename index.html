@@ -2,118 +2,129 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>a small note for you :)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>a small note for you</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@100..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg1:#2b1055;
-    --bg2:#ece1fa;
-    --cat:#1c1c22;
-    --cat-shade:#0e0e12;
-    --pink:#ddd2f2;
-    --cream:#fff8ef;
-    --gold:#ffd166;
+    --wine:#3b1a28;
+    --wine-deep:#240e18;
+    --rose:#c98a98;
+    --blush:#f7e1e4;
+    --blush-soft:#fbeeee;
+    --ivory:#fffaf8;
+    --ink:#4a2433;
+    --muted:#9a7782;
+    --gold:#c9a46a;
+    --gold-light:#e8cf9f;
+    --serif:'Cormorant Garamond', 'Times New Roman', serif;
+    --sans:'Jost', 'Helvetica Neue', Arial, sans-serif;
   }
   *{box-sizing:border-box;}
   html,body{
     margin:0;padding:0;height:100%;
-    font-family:'Playpen Sans', Verdana, sans-serif;
+    font-family:var(--sans);
     overflow:hidden;
   }
   body{
     display:flex;align-items:center;justify-content:center;
-    background:radial-gradient(circle at 50% 20%, var(--bg2), var(--bg1) 70%);
-    background-size:200% 200%;
-    animation: bgshift 12s ease-in-out infinite;
-  }
-  @keyframes bgshift{
-    0%,100%{background-position:50% 0%;}
-    50%{background-position:50% 100%;}
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(232,170,184,0.35), transparent 60%),
+      linear-gradient(180deg, var(--wine) 0%, var(--wine-deep) 100%);
   }
 
-  .stars{
-    position:fixed;inset:0;pointer-events:none;
-  }
+  /* drifting gold dust */
+  .stars{position:fixed;inset:0;pointer-events:none;}
   .star{
     position:absolute;
-    width:3px;height:3px;
-    background:#fff;
+    width:2px;height:2px;
+    background:var(--gold-light);
     border-radius:50%;
-    opacity:0.7;
-    animation: twinkle 2.5s ease-in-out infinite;
+    opacity:0.5;
+    animation: twinkle 3.2s ease-in-out infinite;
   }
   @keyframes twinkle{
-    0%,100%{opacity:0.2;transform:scale(1);}
-    50%{opacity:1;transform:scale(1.6);}
+    0%,100%{opacity:0.15;transform:scale(1);}
+    50%{opacity:0.9;transform:scale(1.8);}
   }
 
+  /* card with a fine gold inner frame */
   .card{
     position:relative;
-    width:min(92vw, 460px);
-    padding:36px 26px 30px;
-    background: linear-gradient(160deg, #fbefe3, #fbefe3);
-    border-radius:28px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.45), inset 0 0 0 3px rgba(255,255,255,0.6);
+    width:min(92vw, 440px);
+    max-height:96vh;
+    padding:40px 28px 30px;
+    background: linear-gradient(170deg, var(--ivory), var(--blush-soft));
+    border-radius:22px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,164,106,0.55);
     text-align:center;
     display:none;
     flex-direction:column;
     align-items:center;
   }
+  .card::before{
+    content:"";
+    position:absolute;
+    inset:9px;
+    border:1px solid rgba(201,164,106,0.45);
+    border-radius:15px;
+    pointer-events:none;
+  }
   .card.active{
     display:flex;
-    animation: pop-in 0.5s cubic-bezier(.26,1.4,.44,1);
+    animation: rise 0.7s cubic-bezier(.22,.9,.3,1);
   }
-  @keyframes pop-in{
-    0%{transform:scale(0.7) translateY(30px);opacity:0;}
-    100%{transform:scale(1) translateY(0);opacity:1;}
+  @keyframes rise{
+    0%{transform:translateY(18px) scale(0.97);opacity:0;}
+    100%{transform:translateY(0) scale(1);opacity:1;}
   }
 
-  h1.title{
-    margin:0 0 6px;
-    font-size:1.4rem;
-    color:#3a2a5d;
-    letter-spacing:0.5px;
-  }
   .sub{
-    margin:0 0 18px;
-    font-size:0.85rem;
-    color:#8b7fa8;
+    margin:0 0 14px;
+    font-family:var(--serif);
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--muted);
   }
 
   /* speech bubble */
   .bubble{
     position:relative;
-    background:var(--pink);
-    color:#61557d;
-    font-weight:700;
-    font-size:0.95rem;
-    letter-spacing:0.5px;
-    padding:12px 18px;
-    border-radius:18px;
-    box-shadow:0 6px 14px rgba(0,0,0,0.15);
-    margin-bottom:6px;
-    animation: bob 3s ease-in-out infinite;
+    background:var(--blush);
+    color:var(--ink);
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:1.45rem;
+    letter-spacing:0.3px;
+    padding:12px 26px;
+    border-radius:999px;
+    border:1px solid rgba(201,164,106,0.6);
+    margin-bottom:14px;
+    animation: bob 4s ease-in-out infinite;
   }
   .bubble::after{
     content:"";
     position:absolute;
-    bottom:-12px;left:50%;
-    transform:translateX(-50%);
-    border-width:12px 10px 0 10px;
-    border-style:solid;
-    border-color:var(--pink) transparent transparent transparent;
+    bottom:-9px;left:50%;
+    transform:translateX(-50%) rotate(45deg);
+    width:14px;height:14px;
+    background:var(--blush);
+    border-right:1px solid rgba(201,164,106,0.6);
+    border-bottom:1px solid rgba(201,164,106,0.6);
   }
   @keyframes bob{
     0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-6px);}
+    50%{transform:translateY(-4px);}
   }
 
   .stage{
     width:220px;height:220px;
-    margin:14px 0 10px;
+    margin:14px 0 8px;
     position:relative;
+    border-radius:16px;
+    overflow:hidden;
   }
 
   /* buttons */
@@ -124,37 +135,42 @@
   button{
     border:none;
     cursor:pointer;
-    font-family:inherit;
-    font-weight:700;
-    font-size:0.95rem;
-    padding:12px 28px;
+    font-family:var(--sans);
+    font-weight:500;
+    font-size:0.9rem;
+    letter-spacing:1.2px;
+    padding:12px 32px;
     border-radius:999px;
-    transition: transform 0.15s ease, box-shadow 0.15s ease;
-    box-shadow:0 6px 0 rgba(0,0,0,0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   }
-  button:active{
-    transform:translateY(4px);
-    box-shadow:0 2px 0 rgba(0,0,0,0.15);
+  button:hover{filter:brightness(1.04);transform:translateY(-1px);}
+  button:active{transform:translateY(1px);}
+  button:focus-visible,.flip-card:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
   }
   .btn-yes{
-    background:linear-gradient(160deg, #ffd166, #ffb347);
-    color:#4a2e00;
+    background:linear-gradient(160deg, #d99aa9, #b76e82);
+    color:#fff;
+    box-shadow:0 8px 18px rgba(183,110,130,0.4);
   }
   .btn-no{
-    background:linear-gradient(160deg, #e2d9f3, #cbb9ee);
-    color:#4a2e77;
+    background:transparent;
+    color:var(--ink);
+    box-shadow:inset 0 0 0 1px var(--rose);
   }
   .btn-again{
-    background:linear-gradient(160deg, var(--pink), #ff8fc7);
-    color:#5a0033;
+    background:linear-gradient(160deg, #d99aa9, #b76e82);
+    color:#fff;
+    box-shadow:0 8px 18px rgba(183,110,130,0.4);
   }
 
-  /* Screen 3 (finale) confetti */
+  /* confetti: blush, rose and gold */
   .confetti-piece{
     position:absolute;
     top:-10px;
-    width:8px;height:14px;
-    opacity:0.9;
+    width:7px;height:12px;
+    opacity:0.95;
     animation: fall linear forwards;
   }
   @keyframes fall{
@@ -162,33 +178,31 @@
   }
 
   .gift-text{
-    font-size:1.05rem;
-    color:#4a2e77;
-    font-weight:700;
-    margin-top:4px;
-    line-height:1.5;
-  }
-  .gift-sub{
-    font-size:0.85rem;
-    color:#8b7fa8;
-    margin-top:6px;
+    font-family:var(--serif);
+    font-size:1.55rem;
+    font-weight:500;
+    color:var(--ink);
+    margin:6px 0 0;
+    line-height:1.3;
   }
 
-  footer.hint{
-    margin-top:14px;
-    font-size:0.72rem;
-    color:#b3a8cc;
+  footer.hint,.flip-hint{
+    margin:14px 0 0;
+    font-size:0.75rem;
+    letter-spacing:0.6px;
+    color:var(--muted);
+    font-weight:300;
   }
 
-  /* discrete credits note */
+  /* credit note */
   .credit{
     position:absolute;
-    bottom:10px;
-    right:16px;
+    bottom:16px;
+    right:24px;
     font-size:0.62rem;
-    color:#c9bcdb;
-    opacity:0.7;
-    letter-spacing:0.2px;
+    color:var(--muted);
+    opacity:0.6;
+    font-weight:300;
   }
 
   /* flip card (screen 3) */
@@ -199,9 +213,9 @@
   .flip-card{
     position:relative;
     width:100%;
-    min-height:380px;
+    min-height:430px;
     transform-style:preserve-3d;
-    transition:transform 0.7s cubic-bezier(.4,.2,.2,1);
+    transition:transform 0.9s cubic-bezier(.4,.2,.2,1);
     cursor:pointer;
   }
   .flip-card.flipped{
@@ -219,20 +233,24 @@
   }
   .flip-back{
     transform:rotateY(180deg);
-    background:linear-gradient(160deg, #f3e9fb, #fbefe3);
-    border-radius:20px;
-    padding:22px 20px;
-  }
-  .flip-hint{
-    margin-top:14px;
-    font-size:0.72rem;
-    color:#b3a8cc;
+    padding:18px 16px;
+    overflow-y:auto;
   }
   .back-message{
-    font-size:0.9rem;
-    color:#4a2e77;
+    margin:0;
+    font-family:var(--serif);
+    font-size:1.12rem;
+    font-weight:500;
+    font-style:italic;
+    color:var(--ink);
     line-height:1.6;
     white-space:pre-wrap;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .star,.bubble{animation:none;}
+    .card.active{animation:none;}
+    .flip-card{transition-duration:0.01s;}
   }
 </style>
 </head>
@@ -242,16 +260,15 @@
 
 <!-- SCREEN 1 -->
 <div class="card active" id="screen1">
-  <!-- <p class="sub">a little something for you</p> -->
   <div class="bubble" id="bubble1">will you accept my gift?</div>
-  <div class="stage" style="border-radius:16px;overflow:hidden;">
+  <div class="stage">
     <img src="https://i.imgur.com/qCnzUNu.gif" alt="Pusheen with a flower bouquet"
          style="width:100%;height:100%;object-fit:contain;">
   </div>
 
   <div class="btn-row">
-    <button class="btn-yes" onclick="goTo('screen3')">YES</button>
-    <button class="btn-no" onclick="goTo('screen2')">NO</button>
+    <button class="btn-yes" onclick="goTo('screen3')">Yes</button>
+    <button class="btn-no" onclick="goTo('screen2')">No</button>
   </div>
   <footer class="hint">there's only one right answer</footer>
   <div class="credit">inspired by @canvacatalyst8 on youtube</div>
@@ -259,14 +276,14 @@
 
 <!-- SCREEN 2: crying cat -->
 <div class="card" id="screen2">
-  <p class="sub">what ?!</p>
+  <p class="sub">what?!</p>
   <div class="bubble" id="bubble2">but why not??</div>
-  <div class="stage" style="border-radius:16px;overflow:hidden;">
+  <div class="stage">
     <img src="https://i.imgur.com/5KyCfG9.gif" alt="Pusheen is sad"
          style="width:100%;height:100%;object-fit:contain;">
   </div>
   <div class="btn-row">
-    <button class="btn-again" onclick="goTo('screen1')">TRY AGAIN</button>
+    <button class="btn-again" onclick="goTo('screen1')">Try again</button>
   </div>
   <footer class="hint">you are obliged to accept... ;-;</footer>
 </div>
@@ -274,22 +291,22 @@
 <!-- SCREEN 3: finale (flip card) -->
 <div class="card" id="screen3">
   <div class="flip-scene">
-    <div class="flip-card" id="flipCard" onclick="toggleFlip()">
+    <div class="flip-card" id="flipCard" onclick="toggleFlip()" tabindex="0" role="button" aria-label="Flip the card"
+         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFlip();}">
       <div class="flip-face flip-front">
-        <p class="sub">YIPPEE!! 🎉</p>
-        <div class="stage" id="confettiStage" style="border-radius:16px;overflow:hidden;">
+        <p class="sub">yippee!! 🎉</p>
+        <div class="stage" id="confettiStage">
           <img src="https://i.imgur.com/Jbs9ljo.gif" alt="Pusheen with a flower bouquet"
                style="width:100%;height:100%;object-fit:contain;">
         </div>
         <p class="gift-text">happy birthday, dear kritmei! 🎂</p>
-        <!-- <p class="gift-sub">-------------------------------------</p> -->
-        <p class="flip-hint">(TAP THE CARD TO FLIP IT OVER)</p>
+        <p class="flip-hint">tap the card to flip it over</p>
       </div>
       <div class="flip-face flip-back">
         <p class="back-message" id="backMessage">
 May life treat you warmly as you complete yet another lap around the sun. I think of you as the sprout of a tree, with long and resilient roots growing beneath the soil. A reminder that they anchor you through any tough situation you may encounter, even if they aren't outwardly visible. Your ability of introspection, self-reflection, is a quality that I find is quite rare, yet incredibly valuable. I wish that you prioritize self-compassion this year and do not feel the need to rush. After all, the sprout requires great nourishment and care as it finds its way towards the sun.
 </p>
-        <p class="flip-hint">inspired by pinterest • (tap to flip back)</p>
+        <p class="flip-hint">inspired by pinterest • tap to flip back</p>
       </div>
     </div>
   </div>
@@ -306,20 +323,20 @@ May life treat you warmly as you complete yet another lap around the sun. I thin
     document.getElementById('flipCard').classList.toggle('flipped');
   }
 
-  // ambient stars
+  // ambient gold dust
   const starsEl = document.getElementById('stars');
   for(let i=0;i<40;i++){
     const s = document.createElement('div');
     s.className = 'star';
     s.style.left = Math.random()*100+'vw';
     s.style.top = Math.random()*100+'vh';
-    s.style.animationDelay = (Math.random()*2.5)+'s';
+    s.style.animationDelay = (Math.random()*3)+'s';
     starsEl.appendChild(s);
   }
 
   function launchConfetti(){
     const stage = document.getElementById('confettiStage');
-    const colors = ['#ff6f91','#ffd166','#8fd3ff','#c792ea','#7ee787'];
+    const colors = ['#f2b8c6','#e48ca3','#c9a46a','#e8cf9f','#fbeeee'];
     for(let i=0;i<26;i++){
       const p = document.createElement('div');
       p.className = 'confetti-piece';
